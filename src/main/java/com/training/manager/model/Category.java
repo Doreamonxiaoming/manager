@@ -25,4 +25,34 @@ public class Category {
     private String name;
     @Column
     private BigDecimal budget;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getBudget() {
+        return budget;
+    }
+
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
+    }
+
+    public Category(Integer id, String name, BigDecimal budget) {
+        this.id = id;
+        this.name = name;
+        this.budget = budget;
+    }
 }
