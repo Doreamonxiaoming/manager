@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
@@ -19,35 +16,12 @@ import java.math.BigDecimal;
 @Table(name="tb_category")
 public class Category {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
     private String name;
-    @Column
     private BigDecimal budget;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getBudget() {
-        return budget;
-    }
-
-    public void setBudget(BigDecimal budget) {
-        this.budget = budget;
-    }
-
+    //@Data 这个注解会自动注入get/set方法，不用再添加o^_^
+    //@AllArgsConstructor @NoArgsConstructor 这两个注解会自动注入全参和无参构造方法
 }

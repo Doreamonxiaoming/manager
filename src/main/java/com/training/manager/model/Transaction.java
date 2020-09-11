@@ -1,14 +1,12 @@
 package com.training.manager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,65 +18,21 @@ import java.util.Date;
 @Table(name="tb_transaction")
 public class Transaction {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
     private String name;
-    @Column
+
+    @ManyToOne(targetEntity=Category.class,fetch=FetchType.LAZY)
+    @JoinColumn(name="category_id",referencedColumnName="id")
+    @JsonIgnore
     private Category category;
+
     @Column
     private Date transactTime;
-    @Column
     private BigDecimal amount;
-    @Column
     private String detail;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Date getTransactTime() {
-        return transactTime;
-    }
-
-    public void setTransactTime(Date transactTime) {
-        this.transactTime = transactTime;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
+    //@Data 这个注解会自动注入get/set方法，不用再添加o^_^
+    //@AllArgsConstructor @NoArgsConstructor 这两个注解会自动注入全参和无参构造方法
 }
