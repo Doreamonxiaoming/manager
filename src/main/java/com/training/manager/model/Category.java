@@ -50,9 +50,4 @@ public class Category {
         this.budget = budget;
     }
 
-    public Category(Integer id, String name, BigDecimal budget) {
-        this.id = id;
-        this.name = name;
-        this.budget = budget;
-    }
 }

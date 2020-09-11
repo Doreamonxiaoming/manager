@@ -81,12 +81,4 @@ public class Transaction {
         this.detail = detail;
     }
 
-    public Transaction(Integer id, String name, Category category, Date transactTime, BigDecimal amount, String detail) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.transactTime = transactTime;
-        this.amount = amount;
-        this.detail = detail;
-    }
 }
