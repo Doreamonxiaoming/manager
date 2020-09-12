@@ -20,7 +20,6 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
 
     @ManyToOne(targetEntity=Category.class,fetch=FetchType.LAZY)

@@ -43,7 +43,7 @@ public class CategoryController {
         }
         else {
             categoryService.deleteCategory(categoryID);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().build();//如果真的delete了，那属于这个category的其他transaction怎么处理？担心transaction那边没有这个category报错
         }
     }
 
