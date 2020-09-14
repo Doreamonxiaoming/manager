@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService{
     //check status when deleted one category
     @Override
     public boolean isCategoryID(Integer categoryID) {
-        return false;//？？这里需要查询在现在在个数据库里是否有这个categoryID
+        return categoryRepo.existsById(categoryID);
     }
 
 
