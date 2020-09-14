@@ -27,26 +27,17 @@ public class CategoryController {
     }
 
     @PutMapping(value="/addCategory", consumes={"application/json","application/xml"})
-    public ResponseEntity addCategory (@RequestBody String name, @RequestBody BigDecimal budget) {
-        Category category = new Category(name, budget);
-        if (!categoryService.isCategory(category)) {
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            categoryService.addCategory(category);
-            return ResponseEntity.ok().build();
-        }
+    public ResponseEntity addCategory (@RequestBody String name, @RequestBody Double budget) {
+        BigDecimal myBudget = new BigDecimal(budget);
+        Category category = new Category(name, myBudget);
+        categoryService.addCategory(category);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{categoryID}")
     public ResponseEntity deleteCategory(@PathVariable Integer categoryID) {
-        if (!categoryService.isCategoryID(categoryID)) {
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            categoryService.deleteCategory(categoryID);
-            return ResponseEntity.ok().build();//如果真的delete了，那属于这个category的其他transaction怎么处理？担心transaction那边没有这个category报错
-        }
+        categoryService.deleteCategory(categoryID);
+        return ResponseEntity.ok().build();
     }
 
 
