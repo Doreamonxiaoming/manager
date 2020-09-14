@@ -27,9 +27,9 @@ public class CategoryController {
     }
 
     @PutMapping(value="/addCategory", consumes={"application/json","application/xml"})
-    public ResponseEntity addCategory (@RequestBody String name, @RequestBody Double budget) {
-        BigDecimal myBudget = new BigDecimal(budget);
-        Category category = new Category(name, myBudget);
+    public ResponseEntity addCategory (@RequestBody Category category) {
+//        BigDecimal myBudget = new BigDecimal(budget);
+//        Category category = new Category(name, myBudget);
         categoryService.addCategory(category);
         return ResponseEntity.ok().build();
     }
