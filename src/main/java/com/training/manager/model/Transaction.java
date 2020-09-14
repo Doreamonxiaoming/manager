@@ -25,7 +25,15 @@ public class Transaction {
     private BigDecimal amount;
     private String detail;
 
+    @JsonIgnore
     @ManyToOne(targetEntity=Category.class,fetch=FetchType.LAZY)
     @JoinColumn(name="category_id",referencedColumnName="id")
     private Category category;
+
+    public Transaction(String name, Date transactTime, BigDecimal amount, String detail) {
+        this.name = name;
+        this.transactTime = transactTime;
+        this.amount = amount;
+        this.detail = detail;
+    }
 }

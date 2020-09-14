@@ -1,5 +1,6 @@
 package com.training.manager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Category {
     private String name;
     private BigDecimal budget;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
