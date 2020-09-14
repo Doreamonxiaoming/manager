@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -28,18 +31,26 @@ public class DaoTest {
         categoryRepository.findAll();//查询所有
         categoryRepository.save(categoryCreate);//save没有id的对象是创建记录
         categoryRepository.save(categoryUpdate);//save有id的对象是更新记录
-        //根据id删除记录//如果没有对应id会报错哦//category对应的所有transaction会被删除！
+
+        //根据id删除记录//如果没有对应id会报错哦//category对应的所有transaction会被删除！！！
         //categoryRepository.deleteById(2);//根据id删除记录//如果没有对应id会报错哦
+
         System.out.println(categoryRepository.count());//查询所有记录条数
         System.out.println(categoryRepository.existsById(3));//判断id对应的记录是否存在
         categoryRepository.findByName("category0");//根据名称查询
     }
 
     @Test
-    public void testTransactionRepository(){
+    public void testTransactionRepository() throws ParseException {
+        //保存一个transaction记录并设置对应的category
         Transaction transaction = new Transaction("test",new Date(),new BigDecimal(100),"detail");
-        Category category = categoryRepository.findById(6).get();
+        Category category = categoryRepository.findById(5).get();
         transaction.setCategory(category);
         transactionRepository.save(transaction);
+
+        //查找两段时间之间的transaction
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        transactionRepository.findByTransactTimeBetween(dateFormat.parse("2020-09-12"), dateFormat.parse("2020-09-15"));
+        System.out.println();
     }
 }
