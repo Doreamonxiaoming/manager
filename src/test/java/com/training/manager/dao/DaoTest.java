@@ -28,6 +28,7 @@ public class DaoTest {
         categoryRepository.findAll();//查询所有
         categoryRepository.save(categoryCreate);//save没有id的对象是创建记录
         categoryRepository.save(categoryUpdate);//save有id的对象是更新记录
+        //根据id删除记录//如果没有对应id会报错哦//category对应的所有transaction会被删除！
         //categoryRepository.deleteById(2);//根据id删除记录//如果没有对应id会报错哦
         System.out.println(categoryRepository.count());//查询所有记录条数
         System.out.println(categoryRepository.existsById(3));//判断id对应的记录是否存在
@@ -37,9 +38,8 @@ public class DaoTest {
     @Test
     public void testTransactionRepository(){
         Transaction transaction = new Transaction("test",new Date(),new BigDecimal(100),"detail");
-        Category category = categoryRepository.findById(1).get();
-
-        Transaction transactionExist = transactionRepository.findById(1).get();
-        System.out.println(categoryRepository.findById(1).get());
+        Category category = categoryRepository.findById(6).get();
+        transaction.setCategory(category);
+        transactionRepository.save(transaction);
     }
 }
