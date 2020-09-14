@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class RepositoryTest {
@@ -24,8 +23,8 @@ public class RepositoryTest {
     }
 
     @GetMapping("/categorys/one")
-    public Optional<Category> getOneCategory(){
-        return categoryRepository.findById(1);
+    public Category getOneCategory(){
+        return categoryRepository.findById(1).get();
     }
 
     @GetMapping("/transactions")
@@ -34,7 +33,7 @@ public class RepositoryTest {
     }
 
     @GetMapping("/transactions/one")
-    public Optional<Transaction> getOneTransaction(){
-        return transactionRepository.findById(1);
+    public Transaction getOneTransaction(){
+        return transactionRepository.findById(1).get();
     }
 }

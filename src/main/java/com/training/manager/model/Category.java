@@ -1,14 +1,16 @@
 package com.training.manager.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -22,6 +24,17 @@ public class Category {
     private String name;
     private BigDecimal budget;
 
-    //@Data 这个注解会自动注入get/set方法，不用再添加o^_^
-    //@AllArgsConstructor @NoArgsConstructor 这两个注解会自动注入全参和无参构造方法
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Transaction> transactions = new HashSet<>();
+
+    public Category(Integer id, String name, BigDecimal budget) {
+        this.id = id;
+        this.name = name;
+        this.budget = budget;
+    }
+
+    public Category(String name, BigDecimal budget) {
+        this.name = name;
+        this.budget = budget;
+    }
 }
