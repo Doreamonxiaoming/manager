@@ -21,7 +21,7 @@ public class CategoryController {
     }
 
     @GetMapping(value = "/oneCategory/{categoryID}", produces = {"application/json", "application/xml"})
-    public Optional<Category> getOneCategory (@PathVariable Integer categoryID) {
+    public Category getOneCategory (@PathVariable Integer categoryID) {
         return categoryService.getOneCategory(categoryID);
     }
 

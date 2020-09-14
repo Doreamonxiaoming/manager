@@ -24,7 +24,8 @@ public class RepositoryTest {
 
     @GetMapping("/categorys/one")
     public Category getOneCategory(){
-        System.out.println(categoryRepository.findById(1).get());
+
+//        System.out.println(categoryRepository.findById(1).get());
         return categoryRepository.findById(1).get();
     }
 

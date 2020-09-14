@@ -22,8 +22,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     //return one category details
     @Override
-    public Optional<Category> getOneCategory(Integer id) {
-        return categoryRepo.findById(id);
+    public Category getOneCategory(Integer id) {
+        return categoryRepo.findById(id).get();
     }
 
     //add one new category
@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService{
     //check status when adding new category
     @Override
     public boolean isCategory(Category category) {
-        return false;//？？这里需要查询在现在在个数据库里是否有这个category
+        return categoryRepo.existsById(category.getId());
     }
 
     //delete one category

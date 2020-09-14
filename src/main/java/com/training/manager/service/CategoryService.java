@@ -10,7 +10,7 @@ public interface CategoryService {
     List<Category> getAllCategory();
 
     //return one category details
-    Optional<Category> getOneCategory(Integer id);
+    Category getOneCategory(Integer id);
 
     //add one new category
     void addCategory(Category category);
