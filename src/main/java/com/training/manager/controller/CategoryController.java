@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,8 @@ public class CategoryController {
     }
 
     @PutMapping(value="/addCategory", consumes={"application/json","application/xml"})
-    public ResponseEntity addCategory (@RequestBody Category category) {
+    public ResponseEntity addCategory (@RequestBody String name, @RequestBody BigDecimal budget) {
+        Category category = new Category(name, budget);
         if (!categoryService.isCategory(category)) {
             return ResponseEntity.notFound().build();
         }
