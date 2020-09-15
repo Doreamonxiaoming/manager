@@ -1,6 +1,7 @@
 package com.training.manager.controller;
 
 import com.training.manager.model.Category;
+import com.training.manager.pojo.CategoryRaw;
 import com.training.manager.pojo.CategoryResult;
 import com.training.manager.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,10 @@ public class CategoryController {
     }
 
     @PostMapping(value="/addCategory", consumes={"application/json","application/xml"})
-    public ResponseEntity addCategory (@RequestBody Category category) {
+    public ResponseEntity addCategory (@RequestBody CategoryRaw categoryRaw) {
+        String name = categoryRaw.getName();
+        BigDecimal budget = categoryRaw.getBudget();
+        Category category = new Category(name, budget);
         categoryService.addCategory(category);
         return ResponseEntity.ok().build();
     }
