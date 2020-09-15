@@ -1,14 +1,17 @@
 package com.training.manager.service;
 
+import com.training.manager.dao.CategoryRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class CategoryServiceImplTest {
+    CategoryRepository categoryRepository;
+    CategoryService categoryService;
 
     @Before
     public void setUp() throws Exception {
+//        categoryRepository = PowerMockito.mock(CategoryRepository.class)
     }
 
     @Test
