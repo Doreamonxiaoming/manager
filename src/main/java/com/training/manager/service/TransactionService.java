@@ -29,8 +29,15 @@ public interface TransactionService {
 
 
     /*Post*/
-    // create/update a transaction
+    // create a transaction
     void addTransaction(Transaction transaction);
+
+    /*Put*/
+    // update a transaction
+    void putTransaction(Integer transactionId,Transaction transaction);
+
+//    void putTransaction(Integer transactionId);
+
 
     /*Delete-删*/
     // delete one transaction

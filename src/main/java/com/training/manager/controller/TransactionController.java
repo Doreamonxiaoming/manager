@@ -56,6 +56,19 @@ public class TransactionController {
 //        }
     }
 
+    /*Put*/
+    // update a transaction
+    @PutMapping(value="/putTransaction/{transactionId}", consumes={"application/json","application/xml"})
+    public ResponseEntity putTransaction (@PathVariable Integer transactionId,@RequestBody Transaction transaction) {
+//        if (!transactionService.isTransaction(transaction)) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        else {
+        transactionService.putTransaction(transactionId,transaction);
+        return ResponseEntity.ok().build();
+//        }
+    }
+
     /*Delete*/
     //delete one transaction
     @DeleteMapping("/deleteOneTransaction/{transactionID}")

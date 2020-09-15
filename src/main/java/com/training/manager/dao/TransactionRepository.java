@@ -13,6 +13,8 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction,Integer>, JpaSpecificationExecutor<Transaction> {
     List<Transaction> findByTransactTimeBetween(Date start, Date end);
 
+//    void saveById(Integer transactionId);
+
 //    @Query("select sum(t.amount) from tb_transaction t")
 //    BigDecimal sumByAmount();
 }

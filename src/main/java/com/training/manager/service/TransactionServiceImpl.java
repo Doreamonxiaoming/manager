@@ -25,10 +25,15 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     public List<TransactionResult> getAllTransaction() {
         List<Transaction> transactions=transactionRepo.findAll();
-        List<TransactionResult> transactionResults=new ArrayList<>();
+        List<TransactionResult> transactionResultsList=new ArrayList<>();
+
+        for(Transaction t:transactions){
+            TransactionResult transactionResults=new TransactionResult(t.getId(),t.getName(),t.getTransactTime(),t.getAmount(),t.getDetail(),t.getCategory().getName());
+            transactionResultsList.add(transactionResults);
+        }
 
 
-        return transactionResults;
+        return transactionResultsList;
     }
 
     //return one transaction details
@@ -56,6 +61,21 @@ public class TransactionServiceImpl implements TransactionService{
     // create/update a transaction
     @Override
     public void addTransaction(Transaction transaction) {
+        transactionRepo.save(transaction);
+    }
+
+    /*Put*/
+    // update a transaction
+    @Override
+   public void putTransaction(Integer transactionId,Transaction newTransaction) {
+//        transactionRepo.saveById(transactionId);
+        Transaction transaction=transactionRepo.findById(transactionId).get();
+        transaction.setId(transactionId);
+        transaction.setName(newTransaction.getName());
+        transaction.setAmount(newTransaction.getAmount());
+        transaction.setTransactTime(newTransaction.getTransactTime());
+        transaction.setDetail(newTransaction.getDetail());
+        transaction.setCategory(newTransaction.getCategory());
         transactionRepo.save(transaction);
     }
 
