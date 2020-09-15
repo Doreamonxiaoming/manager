@@ -34,6 +34,12 @@ public class CategoryController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(value="/modifyCategory", consumes = {"application/json","application/xml"})
+    public ResponseEntity modifyCategory(@RequestBody Category category) {
+        categoryService.addCategory(category);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{categoryID}")
     public ResponseEntity deleteCategory(@PathVariable Integer categoryID) {
         categoryService.deleteCategory(categoryID);
