@@ -2,6 +2,7 @@ package com.training.manager.service;
 
 import com.training.manager.dao.TransactionRepository;
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +23,23 @@ public class TransactionServiceImpl implements TransactionService{
     /*Get-查*/
     //return all transactions
     @Override
-    public List<Transaction> getAllTransaction() {
-        return transactionRepo.findAll();
+    public List<TransactionResult> getAllTransaction() {
+        List<Transaction> transactions=transactionRepo.findAll();
+        List<TransactionResult> transactionResults=new ArrayList<>();
+
+        for (Transaction t : transactions) {
+            BigDecimal result  = new BigDecimal(0);
+            for (Transaction t : c.getTransactions()) {
+                result = result.add(t.getAmount());
+                System.out.println(t.getAmount());
+//                System.out.println(t.getCategory());
+            }
+            System.out.println(result);
+            System.out.println("-----------");
+            c.setCost(result);
+        }
+
+        return transactionResults;
     }
 
     //return one transaction details
