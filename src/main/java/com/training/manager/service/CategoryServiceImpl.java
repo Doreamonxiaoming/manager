@@ -2,9 +2,11 @@ package com.training.manager.service;
 
 import com.training.manager.dao.CategoryRepository;
 import com.training.manager.model.Category;
+import com.training.manager.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,22 @@ public class CategoryServiceImpl implements CategoryService{
     //return all categories
     @Override
     public List<Category> getAllCategory() {
+//        for (Category c : categoryRepo.findAll()) {
+//            BigDecimal result  = new BigDecimal(0);
+//            for (Transaction t : c.getTransactions()) {
+//                result = result.add(t.getAmount());
+//                System.out.println(t.getAmount());
+////                System.out.println(t.getCategory());
+//            }
+//            System.out.println(result);
+//            System.out.println("-----------");
+//            c.setCost(result);
+//        }
+
+//        List<String> name;
+//        name.add(c);
+
+//        List<Category> categoryList = categoryRepo.findAll();
         return categoryRepo.findAll();
     }
 
@@ -49,7 +67,4 @@ public class CategoryServiceImpl implements CategoryService{
     public boolean isCategoryID(Integer categoryID) {
         return categoryRepo.existsById(categoryID);
     }
-
-
-
 }

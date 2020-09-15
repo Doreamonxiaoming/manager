@@ -21,6 +21,7 @@ public class CategoryController {
         return categoryService.getAllCategory();
     }
 
+
     @GetMapping(value = "/oneCategory/{categoryID}", produces = {"application/json", "application/xml"})
     public Category getOneCategory (@PathVariable Integer categoryID) {
         return categoryService.getOneCategory(categoryID);
@@ -45,7 +46,4 @@ public class CategoryController {
         categoryService.deleteCategory(categoryID);
         return ResponseEntity.ok().build();
     }
-
-
-
 }
