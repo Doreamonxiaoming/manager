@@ -1,6 +1,8 @@
 package com.training.manager.service;
 
+import com.training.manager.dao.CategoryRepository;
 import com.training.manager.dao.TransactionRepository;
+import com.training.manager.model.Category;
 import com.training.manager.model.Transaction;
 import com.training.manager.pojo.TransactionResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +52,17 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
 
-//    /*Post-增+改*/
-//    // create/update a transaction
-//    @Override
-//    public void addTransaction(Transaction transaction,Integer categoryId) {
-//        transactionRepo.save(transaction);
-//    }
+    /*Post*/
+    // create a transaction
+    @Override
+    public void addTransaction(Transaction transaction,Integer categoryId) {
+//        Category category=transaction.getCategory();
+//        category.setId(categoryId);
+//        Transaction transaction1=new Transaction(transaction.getId(),transaction.getName(),transaction.getTransactTime(),transaction.getAmount(),transaction.getDetail(),category);
+////        transaction.getCategory().setId(categoryId);
+//        transactionRepo.save(transaction1);
+        transactionRepo.save(transaction);
+    }
 
     /*Put*/
     // update a transaction

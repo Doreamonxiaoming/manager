@@ -18,9 +18,9 @@ public interface TransactionService {
     TransactionResult getOneTransaction(Integer transactionId);
 
 
-//    /*Post*/
-//    // create a transaction
-//    void addTransaction(Transaction transaction,Integer categoryId);
+    /*Post*/
+    // create a transaction
+    void addTransaction(Transaction transaction,Integer categoryId);
 
     /*Put*/
     // update a transaction

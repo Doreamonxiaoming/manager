@@ -32,18 +32,18 @@ public class TransactionController {
     }
 
 
-//    /*Post*/
-//    // add a transaction
-//    @PostMapping(value="/{categoryId}", consumes={"application/json","application/xml"})
-//    public ResponseEntity addTransaction (@RequestBody Transaction transaction,@PathVariable Integer categoryId) {
-////        if (!transactionService.isTransaction(transaction)) {
-////            return ResponseEntity.notFound().build();
-////        }
-////        else {
-//        transactionService.addTransaction(transaction,categoryId);
-//        return ResponseEntity.ok().build();
-////        }
-//    }
+    /*Post*/
+    // add a transaction
+    @PostMapping(value="/{categoryId}", consumes={"application/json","application/xml"})
+    public ResponseEntity addTransaction (@RequestBody Transaction transaction,@PathVariable Integer categoryId) {
+//        if (!transactionService.isTransaction(transaction)) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        else {
+        transactionService.addTransaction(transaction,categoryId);
+        return ResponseEntity.ok().build();
+//        }
+    }
 
     /*Put*/
     // update a transaction
