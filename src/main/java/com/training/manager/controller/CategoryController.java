@@ -14,23 +14,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping(value = "/allCategory", produces = {"application/json", "application/xml"})
+    @GetMapping(produces = {"application/json", "application/xml"})
     public List<CategoryResult> getAllCategory (){
         return categoryService.getAllCategory();
     }
 
 
-    @GetMapping(value = "/oneCategory/{categoryID}", produces = {"application/json", "application/xml"})
+    @GetMapping(value = "/{categoryID}", produces = {"application/json", "application/xml"})
     public Category getOneCategory (@PathVariable Integer categoryID) {
         return categoryService.getOneCategory(categoryID);
     }
 
-    @PostMapping(value="/addCategory", consumes={"application/json","application/xml"})
+    @PostMapping(consumes={"application/json","application/xml"})
     public ResponseEntity addCategory (@RequestBody CategoryRaw categoryRaw) {
         String name = categoryRaw.getName();
         BigDecimal budget = categoryRaw.getBudget();
@@ -39,7 +39,7 @@ public class CategoryController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value="/modifyCategory/{categoryID}", consumes = {"application/json","application/xml"})
+    @PutMapping(value="/{categoryID}", consumes = {"application/json","application/xml"})
     public ResponseEntity modifyCategory(@PathVariable Integer categoryID, @RequestBody Category category) {
         categoryService.modifyCategory(categoryID, category);
         return ResponseEntity.ok().build();

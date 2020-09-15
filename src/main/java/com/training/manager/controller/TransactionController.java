@@ -13,20 +13,20 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/transactions")
 public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
     /*Get*/
     // return all transactions
-    @GetMapping(value = "/allTransaction", produces = {"application/json", "application/xml"})
+    @GetMapping(produces = {"application/json", "application/xml"})
     public List<TransactionResult> getAllCategory (){
         return transactionService.getAllTransaction();
     }
 
     //return one transaction details
-    @GetMapping(value = "/oneTransaction/{transactionID}", produces = {"application/json", "application/xml"})
+    @GetMapping(value = "/{transactionID}", produces = {"application/json", "application/xml"})
     public Transaction getOneCategory (@PathVariable Integer transactionID) {
         return transactionService.getOneTransaction(transactionID);
     }
@@ -45,7 +45,7 @@ public class TransactionController {
 
     /*Post*/
     //add a transaction
-    @PostMapping(value="/addTransaction", consumes={"application/json","application/xml"})
+    @PostMapping(consumes={"application/json","application/xml"})
     public ResponseEntity addTransaction (@RequestBody Transaction transaction) {
 //        if (!transactionService.isTransaction(transaction)) {
 //            return ResponseEntity.notFound().build();
@@ -58,7 +58,7 @@ public class TransactionController {
 
     /*Put*/
     // update a transaction
-    @PutMapping(value="/putTransaction/{transactionId}", consumes={"application/json","application/xml"})
+    @PutMapping(value="/{transactionId}", consumes={"application/json","application/xml"})
     public ResponseEntity putTransaction (@PathVariable Integer transactionId,@RequestBody Transaction transaction) {
 //        if (!transactionService.isTransaction(transaction)) {
 //            return ResponseEntity.notFound().build();
@@ -71,7 +71,7 @@ public class TransactionController {
 
     /*Delete*/
     //delete one transaction
-    @DeleteMapping("/deleteOneTransaction/{transactionID}")
+    @DeleteMapping("/{transactionID}")
     public ResponseEntity deleteOneTransaction(@PathVariable Integer transactionID) {
 //        if (!transactionService.isTransactionID(transactionID)) {
 //            return ResponseEntity.notFound().build();
