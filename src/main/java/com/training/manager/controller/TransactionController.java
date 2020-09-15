@@ -58,13 +58,13 @@ public class TransactionController {
 
     /*Put*/
     // update a transaction
-    @PutMapping(value="/{transactionId}", consumes={"application/json","application/xml"})
-    public ResponseEntity putTransaction (@PathVariable Integer transactionId,@RequestBody Transaction transaction) {
+    @PutMapping(value="/{transactionID}", consumes={"application/json","application/xml"})
+    public ResponseEntity putTransaction (@PathVariable Integer transactionID,@RequestBody Transaction transaction) {
 //        if (!transactionService.isTransaction(transaction)) {
 //            return ResponseEntity.notFound().build();
 //        }
 //        else {
-        transactionService.putTransaction(transactionId,transaction);
+        transactionService.putTransaction(transactionID,transaction);
         return ResponseEntity.ok().build();
 //        }
     }
