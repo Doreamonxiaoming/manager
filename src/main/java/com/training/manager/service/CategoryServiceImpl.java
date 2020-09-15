@@ -3,10 +3,12 @@ package com.training.manager.service;
 import com.training.manager.dao.CategoryRepository;
 import com.training.manager.model.Category;
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.CategoryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,24 +20,18 @@ public class CategoryServiceImpl implements CategoryService{
 
     //return all categories
     @Override
-    public List<Category> getAllCategory() {
-//        for (Category c : categoryRepo.findAll()) {
-//            BigDecimal result  = new BigDecimal(0);
-//            for (Transaction t : c.getTransactions()) {
-//                result = result.add(t.getAmount());
-//                System.out.println(t.getAmount());
-////                System.out.println(t.getCategory());
-//            }
-//            System.out.println(result);
-//            System.out.println("-----------");
-//            c.setCost(result);
-//        }
-
-//        List<String> name;
-//        name.add(c);
-
-//        List<Category> categoryList = categoryRepo.findAll();
-        return categoryRepo.findAll();
+    public List<CategoryResult> getAllCategory() {
+        List<Category> categoryList = categoryRepo.findAll();
+        List<CategoryResult> categoryResultList = new ArrayList<>();
+        for (Category c : categoryList) {
+            BigDecimal result  = new BigDecimal(0);
+            for (Transaction t : c.getTransactions()) {
+                result = result.add(t.getAmount());
+            }
+            CategoryResult categoryResult = new CategoryResult(c.getId(), c.getName(), c.getBudget(), result);
+            categoryResultList.add(categoryResult);
+        }
+        return categoryResultList;
     }
 
     //return one category details
@@ -48,12 +44,6 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public void addCategory(Category category) {
         categoryRepo.save(category);
-
-    }
-    //check status when adding new category
-    @Override
-    public boolean isCategory(Category category) {
-        return categoryRepo.existsById(category.getId());
     }
 
     //delete one category
@@ -62,9 +52,13 @@ public class CategoryServiceImpl implements CategoryService{
         categoryRepo.deleteById(ID);
     }
 
-    //check status when deleted one category
     @Override
-    public boolean isCategoryID(Integer categoryID) {
-        return categoryRepo.existsById(categoryID);
+    public void modifyCategory(Integer ID, Category newCategory) {
+        Category category = categoryRepo.findById(ID).get();
+        category.setId(ID);
+        category.setBudget(newCategory.getBudget());
+        category.setName(newCategory.getName());
+        category.setTransactions(newCategory.getTransactions());
+        categoryRepo.save(category);
     }
 }
