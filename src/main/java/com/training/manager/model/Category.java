@@ -24,6 +24,7 @@ public class Category {
     private String name;
     private BigDecimal budget;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
