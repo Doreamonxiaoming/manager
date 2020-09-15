@@ -34,9 +34,4 @@ public class Category {
         this.name = name;
         this.budget = budget;
     }
-
-    public Category(String name, BigDecimal budget) {
-        this.name = name;
-        this.budget = budget;
-    }
 }
