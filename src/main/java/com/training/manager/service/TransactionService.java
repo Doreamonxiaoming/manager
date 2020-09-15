@@ -17,14 +17,14 @@ public interface TransactionService {
     Transaction getOneTransaction(Integer transactionId);
 
     //return all transactions by categoryId
-    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
+//    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
 
     //return all transactions by date range
-    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
+//    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
 
     /*Sum*/
     // get total expenses or get total expenses by date range
-    BigDecimal getExpensesSumByTransactAmount();
+//    BigDecimal getExpensesSumByTransactAmount();
 
 
     /*Post*/

@@ -31,16 +31,16 @@ public class TransactionController {
     }
 
     //return all transactions by categoryId
-    @GetMapping(value = "/allTransactionsByCategory/{categoryId}", produces = {"application/json", "application/xml"})
-    public List<Transaction> getTransactionsByCategoryId(@PathVariable Integer categoryId){
-        return transactionService.getTransactionsByCategoryId(categoryId);
-    }
+//    @GetMapping(value = "/allTransactionsByCategory/{categoryId}", produces = {"application/json", "application/xml"})
+//    public List<Transaction> getTransactionsByCategoryId(@PathVariable Integer categoryId){
+//        return transactionService.getTransactionsByCategoryId(categoryId);
+//    }
 
     //return all transactions by date range
-    @GetMapping(value = "/allTransactionsByDateRange/{startDate,endDate}",produces = {"application/json", "application/xml"})
-    public List<Transaction> getTransactionsByDateRange(@PathVariable Date startDate, @PathVariable Date endDate){
-        return transactionService.getTransactionsByDateRange(startDate,endDate);
-    }
+//    @GetMapping(value = "/allTransactionsByDateRange/{startDate,endDate}",produces = {"application/json", "application/xml"})
+//    public List<Transaction> getTransactionsByDateRange(@PathVariable Date startDate, @PathVariable Date endDate){
+//        return transactionService.getTransactionsByDateRange(startDate,endDate);
+//    }
 
     /*Post*/
     //add a transaction
@@ -70,10 +70,10 @@ public class TransactionController {
 
     /*Sum*/
     // get total expenses or get total expenses by date range
-    @GetMapping(value = "/allExpenses", produces = {"application/json", "application/xml"})
-   public BigDecimal getExpensesSumByTransactAmount(){
-       return transactionService.getExpensesSumByTransactAmount();
-   }
+//    @GetMapping(value = "/allExpenses", produces = {"application/json", "application/xml"})
+//   public BigDecimal getExpensesSumByTransactAmount(){
+//       return transactionService.getExpensesSumByTransactAmount();
+//   }
 
 
 

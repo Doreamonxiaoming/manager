@@ -29,13 +29,13 @@ public class TransactionServiceImplTest {
     public void getOneTransaction() {
     }
 
-    @Test
-    public void getTransactionsByCategoryId() {
-    }
+//    @Test
+//    public void getTransactionsByCategoryId() {
+//    }
 
-    @Test
-    public void getTransactionsByDateRange() {
-    }
+//    @Test
+//    public void getTransactionsByDateRange() {
+//    }
 
     @Test
     public void addTransaction() {
@@ -45,8 +45,8 @@ public class TransactionServiceImplTest {
     public void deleteOneTransaction() {
     }
 
-    @Test
-    public void getExpensesSumByTransactAmount(){
-//        System.out.println(transactionService.getExpensesSumByTransactAmount().doubleValue());
-    }
+//    @Test
+//    public void getExpensesSumByTransactAmount(){
+////        System.out.println(transactionService.getExpensesSumByTransactAmount().doubleValue());
+//    }
 }

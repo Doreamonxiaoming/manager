@@ -32,18 +32,18 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     //return all transactions by categoryId
-    @Override
-//    @Query(value = "select id,name,transact_time,amount,detail from tb_transaction tr where tr.category_id=:categoryId")
-    public List<Transaction> getTransactionsByCategoryId(Integer categoryId){
-//        return (List<Transaction>) transactionRepo.findAll().get(categoryId);
-        return transactionRepo.findByCategoryId(categoryId);
-    }
+//    @Override
+////    @Query(value = "select id,name,transact_time,amount,detail from tb_transaction tr where tr.category_id=:categoryId")
+//    public List<Transaction> getTransactionsByCategoryId(Integer categoryId){
+////        return (List<Transaction>) transactionRepo.findAll().get(categoryId);
+//        return transactionRepo.findByCategoryId(categoryId);
+//    }
 
     //return all transactions by date range
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    public List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate){
-        return transactionRepo.findByTransactTimeBetween(startDate, endDate);
-    }
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    public List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate){
+//        return transactionRepo.findByTransactTimeBetween(startDate, endDate);
+//    }
 
 
     /*Post-增+改*/
@@ -62,10 +62,14 @@ public class TransactionServiceImpl implements TransactionService{
 
     /*Sum*/
     // get total expenses or get total expenses by date range
-    @Override
-    public BigDecimal getExpensesSumByTransactAmount() {
-        return transactionRepo.sumByAmount();
-    }
+//    @Override
+//    public BigDecimal getExpensesSumByTransactAmount() {
+//        return transactionRepo.sumByAmount();
+//    }
+
+
+
+
 
 
 
