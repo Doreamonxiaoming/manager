@@ -1,6 +1,7 @@
 package com.training.manager.controller;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionResult;
 import com.training.manager.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class TransactionController {
     /*Get*/
     // return all transactions
     @GetMapping(value = "/allTransaction", produces = {"application/json", "application/xml"})
-    public List<Transaction> getAllCategory (){
+    public List<TransactionResult> getAllCategory (){
         return transactionService.getAllTransaction();
     }
 

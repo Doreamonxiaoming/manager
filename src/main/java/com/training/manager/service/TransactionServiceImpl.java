@@ -27,17 +27,6 @@ public class TransactionServiceImpl implements TransactionService{
         List<Transaction> transactions=transactionRepo.findAll();
         List<TransactionResult> transactionResults=new ArrayList<>();
 
-        for (Transaction t : transactions) {
-            BigDecimal result  = new BigDecimal(0);
-            for (Transaction t : c.getTransactions()) {
-                result = result.add(t.getAmount());
-                System.out.println(t.getAmount());
-//                System.out.println(t.getCategory());
-            }
-            System.out.println(result);
-            System.out.println("-----------");
-            c.setCost(result);
-        }
 
         return transactionResults;
     }
