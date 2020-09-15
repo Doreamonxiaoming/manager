@@ -11,26 +11,16 @@ import java.util.List;
 public interface TransactionService {
 
     /*Get*/
-    // return all transactions(all categories)
+    // return all transactions
     List<TransactionResult> getAllTransaction();
 
     //return one transaction details based on the transactionId
-    Transaction getOneTransaction(Integer transactionId);
-
-    //return all transactions by categoryId
-//    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
-
-    //return all transactions by date range
-//    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
-
-    /*Sum*/
-    // get total expenses or get total expenses by date range
-//    BigDecimal getExpensesSumByTransactAmount();
+    TransactionResult getOneTransaction(Integer transactionId);
 
 
-    /*Post*/
-    // create a transaction
-    void addTransaction(Transaction transaction);
+//    /*Post*/
+//    // create a transaction
+//    void addTransaction(Transaction transaction,Integer categoryId);
 
     /*Put*/
     // update a transaction
@@ -42,5 +32,17 @@ public interface TransactionService {
     /*Delete-删*/
     // delete one transaction
     void deleteOneTransaction(Integer transactionID);
+
+
+    //return all transactions by categoryId
+//    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
+
+    //return all transactions by date range
+//    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
+
+    /*Sum*/
+    // get total expenses or get total expenses by date range
+//    BigDecimal getExpensesSumByTransactAmount();
+
 
 }
