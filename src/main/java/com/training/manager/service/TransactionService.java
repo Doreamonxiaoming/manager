@@ -43,26 +43,4 @@ public interface TransactionService {
     // delete one transaction
     void deleteOneTransaction(Integer transactionID);
 
-
-    //get total categorical transaction (date range)
-    BigDecimal getAllTransaction(Integer categoryID);
-    BigDecimal getAllTransaction(Integer categoryID, Date startDate, Date endDate);
-
-    //get total expense or get total expense by date range
-    BigDecimal getExpense();
-    BigDecimal getExpense(Date startDate, Date endDate);
-
-    //get total bill or get total bill by date range
-    BigDecimal getBill();
-    BigDecimal getBill(Date startDate, Date endDate);
-
-    //get total income or get total income by date range
-    BigDecimal getIncome();
-    BigDecimal getIncome(Date startDate, Date endDate);
-
-
-
-
-    //check status when deleted one transaction
-    boolean isTransactionID(Integer ID);
 }
