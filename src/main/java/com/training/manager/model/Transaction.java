@@ -30,7 +30,8 @@ public class Transaction {
     @JoinColumn(name="category_id",referencedColumnName="id")
     private Category category;
 
-    public Transaction(String name, Date transactTime, BigDecimal amount, String detail) {
+    public Transaction(Integer id, String name, Date transactTime, BigDecimal amount, String detail) {
+        this.id = id;
         this.name = name;
         this.transactTime = transactTime;
         this.amount = amount;

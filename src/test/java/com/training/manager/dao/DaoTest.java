@@ -2,6 +2,8 @@ package com.training.manager.dao;
 
 import com.training.manager.model.Category;
 import com.training.manager.model.Transaction;
+import com.training.manager.service.TransactionService;
+import com.training.manager.service.TransactionServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class DaoTest {
 
     @Test
     public void testCategoryRepository(){
-        Category categoryCreate = new Category("create", new BigDecimal(400));
+        Category categoryCreate = new Category(5,"create", new BigDecimal(400));
         Category categoryUpdate = new Category(3,"update", new BigDecimal(300));
 
         categoryRepository.findById(1).get();//通过id查询
@@ -43,14 +45,16 @@ public class DaoTest {
     @Test
     public void testTransactionRepository() throws ParseException {
         //保存一个transaction记录并设置对应的category
-        Transaction transaction = new Transaction("test",new Date(),new BigDecimal(100),"detail");
+        Transaction transaction = new Transaction(1,"test",new Date(),new BigDecimal(100),"detail");
         Category category = categoryRepository.findById(5).get();
-        transaction.setCategory(category);
+//        transaction.setCategory(category);
         transactionRepository.save(transaction);
 
         //查找两段时间之间的transaction
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         transactionRepository.findByTransactTimeBetween(dateFormat.parse("2020-09-12"), dateFormat.parse("2020-09-15"));
         System.out.println();
+
+
     }
 }

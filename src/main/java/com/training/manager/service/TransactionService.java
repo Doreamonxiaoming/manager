@@ -1,18 +1,40 @@
 package com.training.manager.service;
 
 import com.training.manager.model.Transaction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface TransactionService {
-    //return all transactions
+
+    /*Get*/
+    // return all transactions(all categories)
     List<Transaction> getAllTransaction();
 
-    //return one transaction details
-    Optional<Transaction> getOneTransaction(Integer id);
+    //return one transaction details based on the transactionId
+    Transaction getOneTransaction(Integer transactionId);
+
+    //return all transactions by categoryId
+//    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
+
+    //return all transactions by date range
+//    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
+
+    /*Sum*/
+    // get total expenses or get total expenses by date range
+//    BigDecimal getExpensesSumByTransactAmount();
+
+
+    /*Post*/
+    // create/update a transaction
+    void addTransaction(Transaction transaction);
+
+    /*Delete-删*/
+    // delete one transaction
+    void deleteOneTransaction(Integer transactionID);
+
 
     //get total categorical transaction (date range)
     BigDecimal getAllTransaction(Integer categoryID);
@@ -30,13 +52,9 @@ public interface TransactionService {
     BigDecimal getIncome();
     BigDecimal getIncome(Date startDate, Date endDate);
 
-    //add a transaction
-    void addTransaction(Transaction transaction);
-    //check status when adding new transaction
-    boolean isTransaction(Transaction transaction);
 
-    //delete one transaction
-    void deleteTransaction(Integer ID);
+
+
     //check status when deleted one transaction
     boolean isTransactionID(Integer ID);
 }
