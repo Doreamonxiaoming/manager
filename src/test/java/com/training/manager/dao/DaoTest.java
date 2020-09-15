@@ -48,7 +48,7 @@ public class DaoTest {
         //保存一个transaction记录并设置对应的category
         Transaction transaction = new Transaction(1,"test",new Date(),new BigDecimal(100),"detail");
         Category category = categoryRepository.findById(5).get();
-//        transaction.setCategory(category);
+        transaction.setCategory(category);
         transactionRepository.save(transaction);
 
 

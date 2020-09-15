@@ -1,6 +1,7 @@
 package com.training.manager.controller;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionResult;
 import com.training.manager.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class TransactionController {
     /*Get*/
     // return all transactions
     @GetMapping(value = "/allTransaction", produces = {"application/json", "application/xml"})
-    public List<Transaction> getAllCategory (){
+    public List<TransactionResult> getAllCategory (){
         return transactionService.getAllTransaction();
     }
 
@@ -51,6 +52,19 @@ public class TransactionController {
 //        }
 //        else {
         transactionService.addTransaction(transaction);
+        return ResponseEntity.ok().build();
+//        }
+    }
+
+    /*Put*/
+    // update a transaction
+    @PutMapping(value="/putTransaction/{transactionId}", consumes={"application/json","application/xml"})
+    public ResponseEntity putTransaction (@PathVariable Integer transactionId,@RequestBody Transaction transaction) {
+//        if (!transactionService.isTransaction(transaction)) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        else {
+        transactionService.putTransaction(transactionId,transaction);
         return ResponseEntity.ok().build();
 //        }
     }

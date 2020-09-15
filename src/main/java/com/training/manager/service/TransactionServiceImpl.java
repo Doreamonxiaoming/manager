@@ -2,6 +2,7 @@ package com.training.manager.service;
 
 import com.training.manager.dao.TransactionRepository;
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +23,17 @@ public class TransactionServiceImpl implements TransactionService{
     /*Get-查*/
     //return all transactions
     @Override
-    public List<Transaction> getAllTransaction() {
-        return transactionRepo.findAll();
+    public List<TransactionResult> getAllTransaction() {
+        List<Transaction> transactions=transactionRepo.findAll();
+        List<TransactionResult> transactionResultsList=new ArrayList<>();
+
+        for(Transaction t:transactions){
+            TransactionResult transactionResults=new TransactionResult(t.getId(),t.getName(),t.getTransactTime(),t.getAmount(),t.getDetail(),t.getCategory().getName());
+            transactionResultsList.add(transactionResults);
+        }
+
+
+        return transactionResultsList;
     }
 
     //return one transaction details
@@ -50,6 +61,21 @@ public class TransactionServiceImpl implements TransactionService{
     // create/update a transaction
     @Override
     public void addTransaction(Transaction transaction) {
+        transactionRepo.save(transaction);
+    }
+
+    /*Put*/
+    // update a transaction
+    @Override
+   public void putTransaction(Integer transactionId,Transaction newTransaction) {
+//        transactionRepo.saveById(transactionId);
+        Transaction transaction=transactionRepo.findById(transactionId).get();
+        transaction.setId(transactionId);
+        transaction.setName(newTransaction.getName());
+        transaction.setAmount(newTransaction.getAmount());
+        transaction.setTransactTime(newTransaction.getTransactTime());
+        transaction.setDetail(newTransaction.getDetail());
+        transaction.setCategory(newTransaction.getCategory());
         transactionRepo.save(transaction);
     }
 

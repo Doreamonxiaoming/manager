@@ -1,6 +1,7 @@
 package com.training.manager.service;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionResult;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ public interface TransactionService {
 
     /*Get*/
     // return all transactions(all categories)
-    List<Transaction> getAllTransaction();
+    List<TransactionResult> getAllTransaction();
 
     //return one transaction details based on the transactionId
     Transaction getOneTransaction(Integer transactionId);
@@ -28,8 +29,15 @@ public interface TransactionService {
 
 
     /*Post*/
-    // create/update a transaction
+    // create a transaction
     void addTransaction(Transaction transaction);
+
+    /*Put*/
+    // update a transaction
+    void putTransaction(Integer transactionId,Transaction transaction);
+
+//    void putTransaction(Integer transactionId);
+
 
     /*Delete-删*/
     // delete one transaction

@@ -37,4 +37,5 @@ public class Transaction {
         this.amount = amount;
         this.detail = detail;
     }
+
 }
