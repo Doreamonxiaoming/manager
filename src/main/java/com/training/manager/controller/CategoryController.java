@@ -24,7 +24,6 @@ public class CategoryController {
         return categoryService.getAllCategory();
     }
 
-
     @GetMapping(value = "/{categoryID}", produces = {"application/json", "application/xml"})
     public Category getOneCategory (@PathVariable Integer categoryID) {
         return categoryService.getOneCategory(categoryID);
@@ -49,5 +48,10 @@ public class CategoryController {
     public ResponseEntity deleteCategory(@PathVariable Integer categoryID) {
         categoryService.deleteCategory(categoryID);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/total", produces = {"application/json", "application/xml"})
+    public BigDecimal totalBudget (){
+        return categoryService.totalBudget();
     }
 }
