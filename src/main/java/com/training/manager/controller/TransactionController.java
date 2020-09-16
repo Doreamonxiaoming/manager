@@ -13,34 +13,45 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/transaction")
+@RequestMapping("/transactions")
 public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
     /*Get*/
     // return all transactions
-    @GetMapping(value = "/all", produces = {"application/json", "application/xml"})
-    public List<TransactionResult> getAllTransaction () {
+    @GetMapping(produces = {"application/json", "application/xml"})
+    public List<TransactionResult> getAllCategory (){
         return transactionService.getAllTransaction();
     }
 
     //return one transaction details
     @GetMapping(value = "/{transactionID}", produces = {"application/json", "application/xml"})
-    public TransactionResult getOneCategory (@PathVariable Integer transactionID) {
+    public Transaction getOneCategory (@PathVariable Integer transactionID) {
         return transactionService.getOneTransaction(transactionID);
     }
 
+    //return all transactions by categoryId
+//    @GetMapping(value = "/allTransactionsByCategory/{categoryId}", produces = {"application/json", "application/xml"})
+//    public List<Transaction> getTransactionsByCategoryId(@PathVariable Integer categoryId){
+//        return transactionService.getTransactionsByCategoryId(categoryId);
+//    }
+
+    //return all transactions by date range
+//    @GetMapping(value = "/allTransactionsByDateRange/{startDate,endDate}",produces = {"application/json", "application/xml"})
+//    public List<Transaction> getTransactionsByDateRange(@PathVariable Date startDate, @PathVariable Date endDate){
+//        return transactionService.getTransactionsByDateRange(startDate,endDate);
+//    }
 
     /*Post*/
-    // add a transaction
-    @PostMapping(value="/{categoryId}", consumes={"application/json","application/xml"})
-    public ResponseEntity addTransaction (@RequestBody Transaction transaction,@PathVariable Integer categoryId) {
+    //add a transaction
+    @PostMapping(consumes={"application/json","application/xml"})
+    public ResponseEntity addTransaction (@RequestBody Transaction transaction) {
 //        if (!transactionService.isTransaction(transaction)) {
 //            return ResponseEntity.notFound().build();
 //        }
 //        else {
-        transactionService.addTransaction(transaction,categoryId);
+        transactionService.addTransaction(transaction);
         return ResponseEntity.ok().build();
 //        }
     }
@@ -59,7 +70,7 @@ public class TransactionController {
     }
 
     /*Delete*/
-    // delete one transaction
+    //delete one transaction
     @DeleteMapping("/{transactionID}")
     public ResponseEntity deleteOneTransaction(@PathVariable Integer transactionID) {
 //        if (!transactionService.isTransactionID(transactionID)) {
@@ -80,18 +91,20 @@ public class TransactionController {
 
 
 
-//return all transactions by categoryId
-//    @GetMapping(value = "/allTransactionsByCategory/{categoryId}", produces = {"application/json", "application/xml"})
-//    public List<Transaction> getTransactionsByCategoryId(@PathVariable Integer categoryId){
-//        return transactionService.getTransactionsByCategoryId(categoryId);
+
+    //get total categorical transaction
+//    @GetMapping(value = "/categoricalTransaction/{categoryID}", produces = {"application/json", "application/xml"})
+//    public BigDecimal categoryTotal (@PathVariable Integer categoryID) {
+//        return transactionService.getAllTransaction(categoryID);
 //    }
 
-    //return all transactions by date range
-//    @GetMapping(value = "/allTransactionsByDateRange/{startDate,endDate}",produces = {"application/json", "application/xml"})
-//    public List<Transaction> getTransactionsByDateRange(@PathVariable Date startDate, @PathVariable Date endDate){
-//        return transactionService.getTransactionsByDateRange(startDate,endDate);
-//    }
+    //get total categorical transaction with date range
 
+    //get total expense or get total expense by date range
+
+    //get total bill or get total bill by date range
+
+    //get total income or get total income by date range
 
 
 
