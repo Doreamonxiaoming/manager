@@ -61,4 +61,13 @@ public class CategoryServiceImpl implements CategoryService{
         category.setTransactions(newCategory.getTransactions());
         categoryRepo.save(category);
     }
+
+    @Override
+    public BigDecimal totalBudget() {
+        BigDecimal total = new BigDecimal(0);
+        for (Category c : categoryRepo.findAll()) {
+           total = total.add(c.getBudget());
+        }
+        return total;
+    }
 }

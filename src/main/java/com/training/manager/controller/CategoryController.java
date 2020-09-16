@@ -49,4 +49,9 @@ public class CategoryController {
         categoryService.deleteCategory(categoryID);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(value = "/total", produces = {"application/json", "application/xml"})
+    public BigDecimal totalBudget (){
+        return categoryService.totalBudget();
+    }
 }
