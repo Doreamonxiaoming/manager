@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 public class CategoryServiceImplTest {
 
@@ -30,7 +31,7 @@ public class CategoryServiceImplTest {
     Category category;
     List<Category> categories;
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
         //在单元测试之前，执行Mockito的注解扫描，并注入依赖
         MockitoAnnotations.initMocks(this);
 
@@ -59,6 +60,11 @@ public class CategoryServiceImplTest {
 
     @Test
     public void getOneCategory() {
+        // mock findById() action
+        Mockito.when(categoryRepository.findById(1)).thenReturn(Optional.of(category));
+
+        //validate
+        assertEquals(category,categoryService.getOneCategory(1));
     }
 
     @Test
@@ -68,14 +74,33 @@ public class CategoryServiceImplTest {
     }
 
     @Test
-    public void isCategory() {
-    }
-
-    @Test
     public void deleteCategory() {
+        categoryService.deleteCategory(1);
+        verify(categoryRepository).deleteById(1);
+
     }
 
     @Test
-    public void isCategoryID() {
+    public void modifyCategory() {
+        // mock findById() action
+        Mockito.when(categoryRepository.findById(1)).thenReturn(Optional.ofNullable(category));
+
+        // mock except result
+        Category newCategory = new Category().builder().id(2).name("new").budget(new BigDecimal(101)).build();
+        categoryService.modifyCategory(1, newCategory);
+
+        //validate
+        verify(categoryRepository).save(category);
     }
+
+    @Test
+    public void totalBudget() {
+        // mock findAll() action
+        Mockito.when(categoryRepository.findAll()).thenReturn(categories);
+
+        // validate
+        assertEquals(new BigDecimal(100), categoryService.totalBudget());
+
+    }
+
 }
