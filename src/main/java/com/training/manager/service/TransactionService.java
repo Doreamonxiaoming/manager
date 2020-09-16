@@ -1,6 +1,7 @@
 package com.training.manager.service;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionRaw;
 import com.training.manager.pojo.TransactionResult;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,18 +21,23 @@ public interface TransactionService {
 
     /*Post*/
     // create a transaction
-    void addTransaction(Transaction transaction,Integer categoryId);
+    void addTransaction(TransactionRaw transactionRaw);
+
 
     /*Put*/
     // update a transaction
-    void putTransaction(Integer transactionId,Transaction transaction);
-
-//    void putTransaction(Integer transactionId);
+    void putTransaction(Integer transactionId,TransactionRaw transactionRaw);
 
 
     /*Delete-删*/
     // delete one transaction
     void deleteOneTransaction(Integer transactionID);
+
+    /*GetExpenses*/
+    BigDecimal getExpenses();
+
+
+    /*GetBills*/
 
 
     //return all transactions by categoryId
