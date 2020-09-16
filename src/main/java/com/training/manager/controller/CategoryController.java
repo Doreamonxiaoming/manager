@@ -24,7 +24,6 @@ public class CategoryController {
         return categoryService.getAllCategory();
     }
 
-
     @GetMapping(value = "/{categoryID}", produces = {"application/json", "application/xml"})
     public Category getOneCategory (@PathVariable Integer categoryID) {
         return categoryService.getOneCategory(categoryID);

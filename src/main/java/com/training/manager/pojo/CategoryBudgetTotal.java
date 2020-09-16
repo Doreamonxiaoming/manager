@@ -12,7 +12,5 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryBudgetTotal {
-    private Integer id;
-    private String name;
     private BigDecimal budget;
 }
