@@ -1,6 +1,7 @@
 package com.training.manager.service;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionCategory;
 import com.training.manager.pojo.TransactionRaw;
 import com.training.manager.pojo.TransactionResult;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,9 +20,13 @@ public interface TransactionService {
     TransactionResult getOneTransaction(Integer transactionId);
 
 
+//    /*Post*/
+//    // create a transaction
+//    void addTransaction(TransactionRaw transactionRaw);
+
     /*Post*/
     // create a transaction
-    void addTransaction(TransactionRaw transactionRaw);
+    void addTransaction(TransactionCategory transactionCategory);
 
 
     /*Put*/
@@ -38,17 +43,8 @@ public interface TransactionService {
 
 
     /*GetBills*/
+    BigDecimal getBills();
 
-
-    //return all transactions by categoryId
-//    List<Transaction> getTransactionsByCategoryId(Integer categoryId);
-
-    //return all transactions by date range
-//    List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate);
-
-    /*Sum*/
-    // get total expenses or get total expenses by date range
-//    BigDecimal getExpensesSumByTransactAmount();
 
 
 }

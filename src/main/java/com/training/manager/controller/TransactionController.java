@@ -1,6 +1,7 @@
 package com.training.manager.controller;
 
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.TransactionCategory;
 import com.training.manager.pojo.TransactionRaw;
 import com.training.manager.pojo.TransactionResult;
 import com.training.manager.service.TransactionService;
@@ -44,18 +45,28 @@ public class TransactionController {
 //        return transactionService.getTransactionsByDateRange(startDate,endDate);
 //    }
 
+//    /*Post*/
+//    //add a transaction
+//    @PostMapping(consumes={"application/json","application/xml"})
+//    public ResponseEntity addTransaction (@RequestBody TransactionRaw transactionRaw) {
+////        if (!transactionService.isTransaction(transaction)) {
+////            return ResponseEntity.notFound().build();
+////        }
+////        else {
+//        transactionService.addTransaction(transactionRaw);
+//        return ResponseEntity.ok().build();
+////        }
+//    }
+
+
     /*Post*/
     //add a transaction
     @PostMapping(consumes={"application/json","application/xml"})
-    public ResponseEntity addTransaction (@RequestBody TransactionRaw transactionRaw) {
-//        if (!transactionService.isTransaction(transaction)) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        else {
-        transactionService.addTransaction(transactionRaw);
+    public ResponseEntity addTransaction (@RequestBody TransactionCategory transactionCategory) {
+        transactionService.addTransaction(transactionCategory);
         return ResponseEntity.ok().build();
-//        }
     }
+
 
     /*Put*/
     // update a transaction
@@ -91,30 +102,11 @@ public class TransactionController {
     }
 
 
-    /*Sum*/
-    // get total expenses or get total expenses by date range
-//    @GetMapping(value = "/allExpenses", produces = {"application/json", "application/xml"})
-//   public BigDecimal getExpensesSumByTransactAmount(){
-//       return transactionService.getExpensesSumByTransactAmount();
-//   }
-
-
-
-
-    //get total categorical transaction
-//    @GetMapping(value = "/categoricalTransaction/{categoryID}", produces = {"application/json", "application/xml"})
-//    public BigDecimal categoryTotal (@PathVariable Integer categoryID) {
-//        return transactionService.getAllTransaction(categoryID);
-//    }
-
-    //get total categorical transaction with date range
-
-    //get total expense or get total expense by date range
-
-    //get total bill or get total bill by date range
-
-    //get total income or get total income by date range
-
+    /*GetBills*/
+    @GetMapping(value = "/bills",produces = {"application/json", "application/xml"})
+    public BigDecimal getBills(){
+        return transactionService.getBills();
+    }
 
 
 

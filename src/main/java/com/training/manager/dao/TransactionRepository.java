@@ -15,4 +15,7 @@ public interface TransactionRepository extends JpaRepository<Transaction,Integer
 
     @Query(value = "select sum(amount) from tb_transaction", nativeQuery = true)
     BigDecimal sumByAmount();
+
+    @Query(value = "select sum(amount) from tb_transaction join tb_category on tb_transaction.category_id=tb_category.id where tb_category.name='Utilities'", nativeQuery = true)
+    BigDecimal sumByAmountWhereUtilities();
 }

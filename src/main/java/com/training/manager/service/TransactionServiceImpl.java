@@ -4,8 +4,11 @@ import com.training.manager.dao.CategoryRepository;
 import com.training.manager.dao.TransactionRepository;
 import com.training.manager.model.Category;
 import com.training.manager.model.Transaction;
+import com.training.manager.pojo.NewCategory;
+import com.training.manager.pojo.TransactionCategory;
 import com.training.manager.pojo.TransactionRaw;
 import com.training.manager.pojo.TransactionResult;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -56,21 +59,42 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
 
+//    /*Post*/
+//    // create a transaction
+//    @Override
+//    public void addTransaction(TransactionRaw transactionRaw) {
+//        Integer categoryId=transactionRaw.getCategoryId();
+//        Category newCategory=categoryRepo.findById(categoryId).get();
+//        Transaction transaction=new Transaction().builder().
+////                id(transactionRaw.getId()).
+//                name(transactionRaw.getName()).
+//                amount(transactionRaw.getAmount()).
+//                transactTime(transactionRaw.getTransactTime()).
+//                detail(transactionRaw.getDetail()).
+//                category(newCategory).build();
+//        transactionRepo.save(transaction);
+//    }
+
+
     /*Post*/
     // create a transaction
     @Override
-    public void addTransaction(TransactionRaw transactionRaw) {
-        Integer categoryId=transactionRaw.getCategoryId();
-        Category newCategory=categoryRepo.findById(categoryId).get();
+    public void addTransaction(TransactionCategory transactionCategory) {
+        NewCategory newCategory=transactionCategory.getCategory();
+        Category category=new Category().builder().
+                id(newCategory.getValue()).
+                name(newCategory.getLabel()).
+                budget(newCategory.getBudget()).build();
+
         Transaction transaction=new Transaction().builder().
-//                id(transactionRaw.getId()).
-                name(transactionRaw.getName()).
-                amount(transactionRaw.getAmount()).
-                transactTime(transactionRaw.getTransactTime()).
-                detail(transactionRaw.getDetail()).
-                category(newCategory).build();
+                        name(transactionCategory.getName()).
+                        amount(transactionCategory.getAmount()).
+                        transactTime(transactionCategory.getTransactTime()).
+                        detail(transactionCategory.getDetail()).
+                        category(category).build();
         transactionRepo.save(transaction);
     }
+
 
     /*Put*/
     // update a transaction
@@ -109,26 +133,10 @@ public class TransactionServiceImpl implements TransactionService{
         return transactionRepo.sumByAmount();
     }
 
-    /*Sum*/
-    // get total expenses or get total expenses by date range
-//    @Override
-//    public BigDecimal getExpensesSumByTransactAmount() {
-//        return transactionRepo.sumByAmount();
-//    }
-
-    //return all transactions by categoryId
-//    @Override
-////    @Query(value = "select id,name,transact_time,amount,detail from tb_transaction tr where tr.category_id=:categoryId")
-//    public List<Transaction> getTransactionsByCategoryId(Integer categoryId){
-////        return (List<Transaction>) transactionRepo.findAll().get(categoryId);
-//        return transactionRepo.findByCategoryId(categoryId);
-//    }
-
-    //return all transactions by date range
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    public List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate){
-//        return transactionRepo.findByTransactTimeBetween(startDate, endDate);
-//    }
+    /*GetBills*/
+    public BigDecimal getBills(){
+        return transactionRepo.sumByAmountWhereUtilities();
+    }
 
 
 }

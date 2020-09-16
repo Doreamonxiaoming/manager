@@ -1,30 +1,26 @@
 package com.training.manager.pojo;
 
-import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.training.manager.model.Category;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionResult {
+public class TransactionCategory {
 
-    private Integer id;
     private String name;
-
     private Date transactTime;
     private BigDecimal amount;
     private String detail;
 
-    private String categoryName;
-
-
-
+    private NewCategory category;
 
 }
