@@ -84,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService{
         Category category=new Category().builder().
                 id(newCategory.getValue()).
                 name(newCategory.getLabel()).
-                budget(newCategory.getBudget()).build();
+                budget(null).build();//newCategory.getBudget()
 
         Transaction transaction=new Transaction().builder().
                         name(transactionCategory.getName()).
